@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/UI/css/pages.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Faustin250</title>
+</head>
+
+<body class="container full-height-grow">
+    <header>
+        <nav class="navbar">
+            <div class="brand-title">
+                <a href="index.html" class="brand-logo">
+                    <img class="logo-image" src="/UI/assets/logo.png" alt="">
+                </a>
+            </div>
+            <a href="#" class="toggle-button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#" id="logout">Logout</a></li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="about-section">
+        <section class="cards" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+            <section class="card1">
+                <h3>ABOUT ME</h3>
+                <p>I am a freelancer web developer and designer based in Kigali/Rwanda.
+                    I design websites for individuals, businesses and institutions.
+                    I am experienced working with HTML, CSS, Bulma, Bootstrap, Javascript and Wordpress. I you want
+                    a professional and responsive website, don't hesitate to contact me. I am sure we can work
+                    together.
+                </p>
+            </section>
+            <section class="card2">
+                <h3>SKILLS</h3>
+                <div class="label">
+                    <label for="file">HTML:</label>
+                    <progress id="file1" value="85" max="100"> 72% </progres>
+                </div>
+                <div class="label">
+                    <label for="file">CSS:</label>
+                    <progress id="file2" value="70" max="100"> 72% </progres>
+                </div>
+
+
+                <div class="label">
+                    <label for="file">Bootstrap:</label>
+                    <progress id="file4" value="85" max="100"> 72% </progres>
+                </div>
+
+                <div class="label">
+                    <label for="file">Javascript:</label>
+                    <progress id="file5" value="70" max="100"> 72% </progres>
+                </div>
+                <div class="label">
+                    <label for="file">Wordpress:</label>
+                    <progress id="file6" value="85" max="100"> 72% </progres>
+                </div>
+            </section>
+        </section>
+    </section>
+
+    <footer>
+        <p class="footer-text">Copyright 2020 |UKUNDIMANA FAUSTIN | All Rights Reserved
+        </p>
+    </footer>
+
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAK_xghcHVRalie0ugNn2Uhcd4RFXKhSWE",
+            authDomain: "atlp-capstone-project.firebaseapp.com",
+            databaseURL: "https://atlp-capstone-project.firebaseio.com",
+            projectId: "atlp-capstone-project",
+            storageBucket: "atlp-capstone-project.appspot.com",
+            messagingSenderId: "183005059642",
+            appId: "1:183005059642:web:c3720fe6681a0103487303"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // Make auth and firestore references
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        // update firestore settings
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/UI/js/script.js"></script>
+    <script src="/UI/js/auth.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+</html>
