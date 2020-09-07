@@ -639,6 +639,161 @@ h2 {
     width: 50%;
 }
 
+/* Contact form styles*/
+.form {
+    padding: 20px 40px;
+    padding-left: 20px;
+
+
+}
+
+.form-control {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+    text-align: left;
+}
+
+.form-control label {
+    display: inline-block;
+    margin-bottom: 5px;
+
+}
+
+
+
+
+.form-control textarea {
+    border: 0.07em solid #202027;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+}
+
+.form-control textarea:focus {
+    outline: 0;
+    border-color: #777;
+}
+
+.form-control.success textarea {
+    border-color: #2ecc71;
+}
+
+.form-control.error textarea {
+    border-color: #e74c3c;
+}
+
+
+
+.form-control input {
+    border: 0.07em solid #202027;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+}
+
+.form-control input:focus {
+    outline: 0;
+    border-color: #777;
+}
+
+.form-control.success input {
+    border-color: #2ecc71;
+}
+
+.form-control.error input {
+    border-color: #e74c3c;
+}
+
+.form-control i {
+    visibility: hidden;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+}
+
+.form-control.success i.fa-check-circle {
+    color: #2ecc71;
+    visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+    color: #e74c3c;
+    visibility: visible;
+}
+
+.form-control small {
+    color: #e74c3c;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.form-control.error small {
+    visibility: visible;
+}
+
+.form button {
+
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 7px;
+    margin-top: 20px;
+    width: 108%;
+
+}
+
+button.btn-form {
+    display: inline-block;
+    padding: .5rem .7rem;
+    border: 0.07em solid #202027;
+    font-size: 1.05rem;
+    text-decoration: none;
+    color: #202027;
+    border-radius: .3rem;
+    background-color: #F2EAEC;
+    width: 106%;
+
+
+}
+
+button.btn-form:hover {
+    color: #2480FF;
+    border-color: #2480FF
+}
+
+button.btn-form:active {
+    color: #2480FF;
+    border-color: #2480FF;
+}
+
+@media screen and (max-width: 500px) {
+
+
+    button.btn-form {
+        display: inline-block;
+        padding: .5rem .7rem;
+        border: 0.07em solid #202027;
+        font-size: 1.05rem;
+        text-decoration: none;
+        color: #202027;
+        border-radius: .3rem;
+        background-color: #F2EAEC;
+        width: 106%;
+        margin-left: 2%;
+
+
+    }
+}
 
 
 /*Media queries*/
