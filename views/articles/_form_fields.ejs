@@ -1,0 +1,19 @@
+<div class="form-control">
+    <label for="username">Title</label>
+    <input type="text" id="title" name="title" value="<%= article.title %>" required>
+    <i class="fas fa-check-circle"></i>
+    <i class="fas fa-exclamation-circle"></i>
+    <small>Error message</small>
+</div>
+
+<div class="form-control">
+    <label for="username">Introduction</label>
+    <textarea type="text" name="summary" id="summary" class="form-control" rows="2"><%= article.summary %></textarea>
+</div>
+<div class="form-control">
+    <label for="username">Content</label>
+    <textarea type="text" id="content" rows="4" name="content" required><%= article.content %>  </textarea>
+</div>
+<button class="btn">Create</button>
+<a href="/allArticles">Cancel</a>
+

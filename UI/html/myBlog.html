@@ -4,10 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
     <link rel="stylesheet" href="/UI/css/dashboard.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -18,7 +14,7 @@
     <header>
         <nav class="navbar">
             <div class="brand-title">
-                <a href="/" class="brand-logo">
+                <a href="myBlog.html" class="brand-logo">
                     <img class="logo-image" src="/UI/assets/logo.png" alt="">
                 </a>
             </div>
@@ -37,83 +33,23 @@
             </div>
         </nav>
     </header>
-    <section class="blog-section1">
-        <div class="contact-content">
+    <section class="blog-section">
+        <h1 class="heading">Account details</h1>
+        <div class="blog-content" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
         </div>
     </section>
-    <section class="myBlog-section">
-        <div class="blogSection1">
-            <p class="paragraph"> CREATE A BLOG POST
-            </p>
-            <form id="form" class="form">
-                <div class="form-control">
-                    <label for="username">Author</label>
-                    <input type="text" id="author" name="name" />
-                </div>
-                <div class="form-control">
-                    <label for="username">Post Title</label>
-                    <input type="text" id="postTitle" name="name" />
-                </div>
-                <div class="form-control">
-                    <label for="Date">Date</label>
-                    <input type="date" id="postDate" name="name" />
-                </div>
 
-                <div class="form-control">
-                    <label for="username">Content</label>
-                    <textarea type="text" placeholder="Password" id="postContent" rows="4" name="message1">
-                                    </textarea>
-                </div>
-
-                <button class="btn-form" id="submitBtn">CREATE</button>
-            </form>
-
-        </div>
-        <section class="inquiries2">
-            <div class="content">
-                <ul id="blog-list"></ul>
-            </div>
-        </section>
-
-    </section>
     <footer>
-        <p class="footer-text">Copyright 2020 | UKUNDIMANA FAUSTIN | All Rights Reserved
+        <p class="footer-text">Copyright 2020 |UKUNDIMANA FAUSTIN | All Rights Reserved
         </p>
     </footer>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyAK_xghcHVRalie0ugNn2Uhcd4RFXKhSWE",
-            authDomain: "atlp-capstone-project.firebaseapp.com",
-            databaseURL: "https://atlp-capstone-project.firebaseio.com",
-            projectId: "atlp-capstone-project",
-            storageBucket: "atlp-capstone-project.appspot.com",
-            messagingSenderId: "183005059642",
-            appId: "1:183005059642:web:c3720fe6681a0103487303"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        // Make auth and firestore references
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        // update firestore settings
-    </script>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="/js/auth.js"></script>
     <script src="/js/script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
+
 </body>
 
 </html>
