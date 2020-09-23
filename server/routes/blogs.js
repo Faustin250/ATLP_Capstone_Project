@@ -7,8 +7,8 @@ import blogsController from '../controllers/blogsController';
 const router = express.Router();
 // Get all blogs
 router.get('/', blogsController.findAll);
-// Get single blog
-router.get('/:id', getBlog, blogsController.findOne);
+// // Get single blog
+// router.get('/:id', getBlog, blogsController.findOne);
 
 // Get One middleware
 async function getBlog(req, res, next) {
