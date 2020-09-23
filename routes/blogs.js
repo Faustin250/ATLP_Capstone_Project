@@ -5,10 +5,8 @@ import blogsController from '../controllers/blogsController';
 // import getSingleBlog from '../middlewares/getSingleBlog';
 
 const router = express.Router();
-// Get all blogs
-router.get('/', blogsController.findAll);
-// Get single blog
-router.get('/:id', getBlog, blogsController.findOne);
+// Delet single blog
+router.delete('/:id', getBlog, blogsController.deleteOne);
 
 // Get One middleware
 async function getBlog(req, res, next) {
