@@ -1,6 +1,7 @@
 import express from 'express';
 import blogsRouter from './routes/blogs';
 import UsersRouter from './routes/index';
+import contactRouter from './routes/contact';
 import mongoose from 'mongoose';
 
 // MongoDB Connection
@@ -21,7 +22,7 @@ app.use(express.json());
 const PORT = 2000;
 app.use('/blogs', blogsRouter);
 app.use('/', UsersRouter);
- 
+app.use('/questions', contactRouter)
  
 app.listen(PORT, () =>{
     console.log(`App is listening to port:${PORT}`);
