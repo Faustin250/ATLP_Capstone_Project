@@ -1,28 +1,26 @@
 
 import Blog from '../models/blog';
 export default class BlogsController {
-
-    static async findAll(req, res) {
-        try {
-          const blogs = await Blog.find();
-          res.json({
-              message: 'success',
-              data: blogs,
-          });
     
-        } catch (err) {
-            res.status(400).json({
-                error: err.message,
-            })
+    static async createOne(req, res)  {
+        const { title, intro, content, date } = req.body;
+         const blogs = new Blog({
+             title,
+             intro,
+             content,
+             date,
+         }); 
+         try {
+             const newBlog = await blogs.save();
+             res.status(201).json({
+                 message: 'created',
+                 data: newBlog,
+             });
+           } catch(err) {
+            res.status(500).json({
+              err: err.message,
+          })
         }
-    
-    }
-
-    static findOne(req, res) {
-        res.json({
-            message: 'success',
-            data: res.blog,
-        });
     }
        
   }
