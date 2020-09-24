@@ -9,7 +9,6 @@ export default class BlogsController {
               message: 'success',
               data: blogs,
           });
-    
         } catch (err) {
             res.status(400).json({
                 error: err.message,
@@ -17,13 +16,6 @@ export default class BlogsController {
         }
     
     }
-
-    // static findOne(req, res) {
-    //     res.json({
-    //         message: 'success',
-    //         data: res.blog,
-    //     });
-    // }
        
   }
     
