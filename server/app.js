@@ -1,6 +1,5 @@
 import express from 'express';
 import blogsRouter from './routes/blogs';
-import UsersRouter from './routes/index';
 import mongoose from 'mongoose';
 
 // MongoDB Connection
