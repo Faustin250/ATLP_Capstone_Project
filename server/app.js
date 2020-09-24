@@ -15,14 +15,10 @@ db.on('open', () => {
 db.on('error', () => {
   console.log('DB Connection failled');
 });
-
 const app = express();
 app.use(express.json());
 const PORT = 2000;
 app.use('/blogs', blogsRouter);
-app.use('/', UsersRouter);
- 
- 
 app.listen(PORT, () =>{
     console.log(`App is listening to port:${PORT}`);
 });
