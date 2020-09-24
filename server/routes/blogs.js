@@ -5,7 +5,7 @@ import blogsController from '../controllers/blogsController';
 // import getSingleBlog from '../middlewares/getSingleBlog';
 
 const router = express.Router();
-// Create a blog
-router.post('/newBlog', blogsController.createOne);
+// Update blog
+router.patch('/:id', getBlog, blogsController.updateOne);
  
 module.exports = router;
