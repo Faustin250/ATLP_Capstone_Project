@@ -6,7 +6,7 @@ export default class BlogsController {
         try {
           const blogs = await Blog.find();
           res.json({
-              message: 'success',
+              message: 'blogs found',
               data: blogs,
           });
         } catch (err) {
