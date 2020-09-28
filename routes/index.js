@@ -1,5 +1,8 @@
 import express from 'express';
 const router = express.Router();
+const {
+    requireAuth
+} = require('../middlewares/authMiddleware');
 
 // Homepage
 router.get('/', (req, res) => {
@@ -10,13 +13,7 @@ router.get('/', (req, res) => {
 });
 
 // About page
-router.get('/about', (req, res) => {
-    res.json({
-        message: 'success',
-        data: [],
-    });
-});
-
+router.get('/about', requireAuth, (req, res) => res.render('dashboard'));
 // Contact page
 router.get('/contact', (req, res) => {
     res.json({

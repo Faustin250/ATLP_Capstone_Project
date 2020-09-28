@@ -1,65 +1,54 @@
-import express from 'express';
-import blogsRouter from './routes/blogs';
-import UsersRouter from './routes/index';
-import contactRouter from './routes/contact';
-import mongoose from 'mongoose';
-import authRoutes from './routes/authRoutes';
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
+ const express = require("express");
+ const app = express();
+ const mongoose = require("mongoose");
+ const morgan = require("morgan");
+ const bodyParser = require("body-Parser");
+ const blogsRouter = require("./routes/blogs");
+ const contactRouter = require("./routes/contact");
+ const userAuthRoutes = require("./routes/userAuth")
 
-// MongoDB Connection
-const dbURI = "mongodb+srv://faustin:faustin@learnnode.e3lxu.mongodb.net/nodeDB?retryWrites=true&w=majority";
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const db = mongoose.connection;
-db.on('open', () => {
-  console.log('DB Connected');
-});
+ mongoose.set("useCreateIndex", true);
+ require("dotenv/config");
+ mongoose.connect(
+   process.env.DB_CONNECTION, {
+     useNewUrlParser: true,
+     useUnifiedTopology: true,
+   },
+   () => console.log("connected to DB!")
+ );
 
-db.on('error', () => {
-  console.log('DB Connection failled');
-});
+ app.use(morgan("dev"));
+ app.use(bodyParser.urlencoded({
+   extended: false
+ }));
+ app.use(bodyParser.json());
+ app.use((req, res, next) => {
+   res.header("Access-Control-Allow-Origin", "*");
+   res.header("Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept, Authorization");
+   if (req.method === 'OPTIONS') {
+     res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+     return res.status(200).json({});
+   }
+   next();
+ });
 
-const app = express();
-// middleware
-app.use(express.static('public'));
-app.use(express.json());
-// view engine
-app.set('view engine', 'ejs');
+ app.use("/blogs", blogsRouter);
+ app.use("/questions", contactRouter);
+ app.use("/user", userAuthRoutes);
 
-const PORT = 2000;
-app.use('/blogs', blogsRouter);
-app.use('/', UsersRouter);
-app.use('/questions', contactRouter);
-app.use(authRoutes);
- 
-app.listen(PORT, () =>{
-    console.log(`App is listening to port:${PORT}`);
-});
+ app.use((req, res, next) => {
+   const error = new Error(" Not found");
+   error.status = 404;
+   return;
+ });
+ app.use((error, req, res, next) => {
+   res.status(error.status || 500);
+   res.json({
+     error: {
+       message: error.message,
+     },
+   });
+ });
 
-// cookies
-const cookieParser = require('cookie-parser');
-app.use(cookieParser());
-
-// app.get('/set-cookies', (req, res) => {
-
-//   // res.setHeader('Set-Cookie', 'newUser=true');
-  
-//   res.cookie('newUser', false);
-//   res.cookie('isEmployee', true, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });
-
-//   res.send('you got the cookies!');
-
-// });
-
-// app.get('/read-cookies', (req, res) => {
-
-//   const cookies = req.cookies;
-//   console.log(cookies.newUser);
-
-//   res.json(cookies);
-
-// });
- 
-
+ app.listen(2000);

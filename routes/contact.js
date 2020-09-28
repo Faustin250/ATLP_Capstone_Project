@@ -1,35 +1,75 @@
-import express from 'express';
-import Contact from '../models/contact';
-import contactController from '../controllers/contactController';
- 
-const router = express.Router();
+ import express from 'express';
+ import Contact from '../models/contact';
+ import mongoose from 'mongoose';
+ import checkAuth from '../middlewares/check-auth';
 
-// Display questions
-router.get('/', contactController.findAll);
+ const router = express.Router();
+ router.get('/', (req, res, next) => {
+     Contact.find()
+         .exec()
+         .then(docs => {
+             const response = {
+                 count: docs.length,
+                 Contact: docs.map(doc => {
+                     return {
+                         name: doc.name,
+                         email: doc.email,
+                         question: doc.question,
+                         _id: doc._id,
 
-// Ask a question
-router.post('/create', contactController.createOne);
+                     }
+                 })
+             }
+             res.status(200).json(docs);
+         })
+         .catch(err => {
+             console.log(err);
+             res.status(500).json({
+                 error: err
+             });
+         });
+ });
 
-// Delete a question
-router.delete('/:id', getQuestion, contactController.deleteOne);
+ router.post('/create', checkAuth, (req, res, next) => {
+     const contact = new Contact({
+         _id: new mongoose.Types.ObjectId(),
+         name: req.body.name,
+         email: req.body.email,
+         question: req.body.question
+     });
+     contact.save().then(result => {
+         console.log(result);
+         res.status(201).json({
+             message: 'question sent',
+             QuestionsSent: result
+         });
 
-// Get One middleware
-async function getQuestion(req, res, next) {
-    let contact;
-    try{
-        contact = await Contact.findById(req.params.id);
-     if(contact == null){
-         return res.status(404).json({message: 'Question not found'});
-     }
-    } catch(err) {
+     }).catch(err => {
+         console.log(err)
+         res.status(500).json({
+             error: err
+         });
+     });
+ });
 
-        return res.status(500).json({
-            message: err.message,
-        });
-    }
-    res.contact = contact;
-    next();
-}
+ router.delete('/:blogId', checkAuth, (req, res, next) => {
+     const id = req.params.blogId
+     Contact.remove({
+             _id: id
+         })
+         .exec()
+         .then(result => {
+             res.status(200).json({
+                 message: 'question deleted'
+             })
 
+         })
+         .catch(err => {
+             console.log(err);
+             res.status(500).json({
+                 error: err
+             });
+         });
+ });
 
-module.exports = router;
+ module.exports = router;

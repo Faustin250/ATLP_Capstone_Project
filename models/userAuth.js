@@ -5,6 +5,9 @@ const {
 const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
+
+  _id: mongoose.Schema.Types.ObjectId,
+
   email: {
     type: String,
     required: [true, 'Please enter an email'],
@@ -18,12 +21,6 @@ const userSchema = new mongoose.Schema({
     minlength: [6, 'Minimum password length is 6 characters'],
   }
 });
-
-// fire a function after doc saved to db
-// userSchema.post('save', function (doc, next) {
-//   console.log('new user was created & saved', doc);
-//   next();
-// });
 
 // fire a function before doc saved to db
 userSchema.pre('save', async function (next) {
