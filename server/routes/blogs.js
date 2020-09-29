@@ -1,9 +1,9 @@
 import express from 'express';
 import Blog from '../models/blog';
 import blogsController from '../controllers/blogsController';
+import mongoose from 'mongoose';
 
 const router = express.Router();
-// Get all blogs
-router.get('/', blogsController.findAll);
-
+router.get('/', blogsController.blogs_get_all);
+ 
 module.exports = router;

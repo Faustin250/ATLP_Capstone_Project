@@ -1,21 +1,29 @@
-
 import Blog from '../models/blog';
-export default class BlogsController {
+import mongoose from 'mongoose';
 
-    static async findAll(req, res) {
-        try {
-          const blogs = await Blog.find();
-          res.json({
-              message: 'blogs found',
-              data: blogs,
-          });
-        } catch (err) {
-            res.status(400).json({
-                error: err.message,
-            })
-        }
-    
-    }
-       
-  }
-    
+exports.blogs_get_all = (req, res, next) => {
+  Blog.find()
+    .select('title intro content')
+    .exec()
+    .then(docs => {
+      const response = {
+        count: docs.length,
+        Blog: docs.map(doc => {
+          return {
+            title: doc.title,
+            intro: doc.intro,
+            content: doc.content,
+            _id: doc._id,
+
+          }
+        })
+      }
+      res.status(200).json(docs);
+
+    }).catch(err => {
+      res.status(500).json({
+        error: err
+      });
+    });
+}
+ 
