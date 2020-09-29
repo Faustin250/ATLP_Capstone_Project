@@ -1,0 +1,29 @@
+{
+  "name": "mybrand",
+  "version": "1.0.0",
+  "description": "This is part of ATLP Capstone Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Faustin250/ATLP_Capstone_Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Faustin250/ATLP_Capstone_Project/issues"
+  },
+  "homepage": "https://github.com/Faustin250/ATLP_Capstone_Project#readme",
+  "dependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.5",
+    "nodemon": "^2.0.4"
+  }
+}
