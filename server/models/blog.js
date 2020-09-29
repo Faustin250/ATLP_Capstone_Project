@@ -1,6 +1,8 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
 
-const blogsSchema = new Schema({
+const blogsSchema = mongoose.Schema({
+
+  _id: mongoose.Schema.Types.ObjectId,
   title: {
     type: String,
     required: true,
@@ -12,11 +14,7 @@ const blogsSchema = new Schema({
   content: {
     type: String,
     required: true,
-  },
-  date: {
-    type: String,
-    required: true,
-  },
+  }
 });
 
 module.exports = mongoose.model('Blog', blogsSchema);
