@@ -15,7 +15,7 @@ const blogsSchema = new Schema({
   },
   date: {
     type: String,
-    required: true,
+     
   },
 });
 

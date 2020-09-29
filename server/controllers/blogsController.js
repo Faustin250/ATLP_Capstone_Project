@@ -1,27 +1,25 @@
-
 import Blog from '../models/blog';
-export default class BlogsController {
-    
-    static async createOne(req, res)  {
-        const { title, intro, content, date } = req.body;
-         const blogs = new Blog({
-             title,
-             intro,
-             content,
-             date,
-         }); 
-         try {
-             const newBlog = await blogs.save();
-             res.status(201).json({
-                 message: 'created',
-                 data: newBlog,
-             });
-           } catch(err) {
-            res.status(500).json({
-              err: err.message,
-          })
-        }
-    }
-       
-  }
-    
+import mongoose from 'mongoose';
+
+exports.blogs_create_blog = (req, res, next) => {
+  const blog = new Blog({
+    _id: new mongoose.Types.ObjectId(),
+    title: req.body.title,
+    intro: req.body.intro,
+    content: req.body.content
+  });
+  blog.save().then(result => {
+    console.log(result);
+    res.status(201).json({
+      message: 'blog created',
+      createdBlogs: result
+    });
+
+  }).catch(err => {
+    console.log(err)
+    res.status(500).json({
+      error: err
+    });
+  });
+}
+ 
