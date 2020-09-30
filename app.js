@@ -7,7 +7,6 @@
  const contactRouter = require("./routes/contact");
  const userAuthRoutes = require("./routes/userAuth")
 
-
  mongoose.set("useCreateIndex", true);
  require("dotenv/config");
  mongoose.connect(
@@ -17,6 +16,8 @@
    },
    () => console.log("connected to DB!")
  );
+
+
 
  app.use(morgan("dev"));
  app.use(bodyParser.urlencoded({
@@ -42,6 +43,7 @@
    error.status = 404;
    return;
  });
+
  app.use((error, req, res, next) => {
    res.status(error.status || 500);
    res.json({
@@ -51,4 +53,4 @@
    });
  });
 
- app.listen(2000);
+ module.exports = app;

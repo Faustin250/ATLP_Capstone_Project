@@ -1,100 +1,122 @@
-import Blog from '../models/blog';
+const Blog = require("../models/blog");
+const mongoose = require("mongoose");
+exports.blogs_get_all = (req, res, next) => {
+  Blog.find()
+    .select('title intro content')
+    .exec()
+    .then(docs => {
+      const response = {
+        count: docs.length,
+        Blog: docs.map(doc => {
+          return {
+            title: doc.title,
+            intro: doc.intro,
+            content: doc.content,
+            _id: doc._id,
 
-export default class BlogsController {
-  static async findAll(req, res) {
-    try {
-      const blogs = await Blog.find();
-      res.json({
-        message: 'success',
-        data: blogs,
+          }
+        })
+      }
+      res.status(200).json(docs);
+
+    }).catch(err => {
+      res.status(500).json({
+        error: err
       });
-
-    } catch (err) {
-      res.status(400).json({
-        error: err.message,
-      })
-    }
-
-  }
-
-  static findOne(req, res) {
-    res.json({
-      message: 'success',
-      data: res.blog,
     });
-  }
+}
 
-  static async deleteOne(req, res) {
-    try {
-      await res.blog.remove();
-      res.json({
-        message: 'Blog deleted'
-      });
-    } catch (err) {
-      res.status(500).json({
-        message: err.message
-      });
-
-    }
-  }
-
-  static async updateOne(req, res) {
-    const {
-      title,
-      intro,
-      content,
-      date
-    } = req.body;
-
-    if (title != null) {
-      res.blog.title = title;
-    }
-    if (intro != null) {
-      res.blog.intro = intro;
-    }
-    if (content != null) {
-      res.blog.content = content;
-    }
-    if (date != null) {
-      res.blog.date = date;
-    }
-
-    try {
-      const updatedBlog = await res.blog.save();
-      res.json({
-        message: 'updated',
-        data: updatedBlog,
-      });
-    } catch (err) {
-      res.status(500).json({
-        message: err.message
-      });
-    }
-  }
-
-  static async createOne(req, res) {
-    const {
-      title,
-      intro,
-      content,
-      date
-    } = req.body;
-    const blogs = new Blog({
-      title,
-      intro,
-      content,
-      date,
+exports.blogs_create_blog = (req, res, next) => {
+  const blog = new Blog({
+    _id: new mongoose.Types.ObjectId(),
+    title: req.body.title,
+    intro: req.body.intro,
+    content: req.body.content
+  });
+  blog.save().then(result => {
+    console.log(result);
+    res.status(201).json({
+      message: 'blog created',
+      createdBlogs: result
     });
-    try {
-      const newBlog = await blogs.save();
-      res.status(201).json({
-        message: 'created',
-        data: newBlog,
-      });
-    } catch (err) {
+
+  }).catch(err => {
+    console.log(err)
+    res.status(500).json({
+      error: err
+    });
+  });
+}
+
+exports.blogs_get_one = (req, res, next) => {
+  const id = req.params.blogId
+  Blog.findById(id)
+    .exec()
+    .then(doc => {
+      console.log(doc);
+      if (doc) {
+        res.status(200).json(doc);
+      } else {
+        res.status(404).json({
+          message: 'No valid entry found for that id'
+        });
+      }
+    })
+    .catch(err => {
+      console.log(err)
       res.status(500).json({
-        err: err.message,
-      })
-    }
+        error: err
+      });
+    });
+}
+
+exports.blogs_update_one = (req, res, next) => {
+  const id = req.params.blogId;
+  const updateOps = {};
+  for (const ops of req.body) {
+    updateOps[ops.propName] = ops.value;
   }
+
+  Blog.update({
+      _id: id
+    }, {
+      $set: updateOps
+    }).exec()
+    .then(
+      result => {
+        res.status(200).json({
+          message: "Blog updated"
+        });
+      }
+    )
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+
+  res.status(200).json({
+    message: 'blog updated'
+  })
+}
+
+exports.blogs_delete_one = (req, res, next) => {
+  const id = req.params.blogId
+  Blog.remove({
+      _id: id
+    })
+    .exec()
+    .then(result => {
+      res.status(200).json({
+        message: 'blog deleted'
+      })
+
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
 }

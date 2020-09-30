@@ -8,7 +8,6 @@ require("dotenv/config");
 
 
 router.post('/signup', (req, res, next) => {
-
     User.find({
             email: req.body.email
         })
@@ -48,7 +47,6 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-
     User.find({
             email: req.body.email
         })
