@@ -95,11 +95,9 @@ exports.blogs_update_one = (req, res, next) => {
         error: err
       });
     });
-
-  res.status(200).json({
-    message: 'blog updated'
-  })
 }
+
+
 
 exports.blogs_delete_one = (req, res, next) => {
   const id = req.params.blogId
