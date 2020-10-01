@@ -1,11 +1,31 @@
 let mongoose = require("mongoose");
 let Blog = require("../models/blog");
+let Contact = require("../models/contact");
 let chai = require("chai");
 let chaiHttp = require("chai-http");
 let server = require("../app");
 let should = chai.should();
 chai.use(chaiHttp);
-let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVrdW5kaW1hbmFAZ21haWwuY29tIiwidXNlcklkIjoiNWY3MzBhZDlkMThlYzIxMmZjN2RhNGJmIiwiaWF0IjoxNjAxNDgzMzAzLCJleHAiOjE2MDE0ODY5MDN9.K--dTyj8Zb-fww87eflouJRFdlff0QpKtwQYXsIWTg0'
+let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVrdW5kaW1hbmFAZ21haWwuY29tIiwidXNlcklkIjoiNWY3MzBhZDlkMThlYzIxMmZjN2RhNGJmIiwiaWF0IjoxNjAxNTIzMzE5LCJleHAiOjE2MDE1MjY5MTl9.mu1yXwkgGjBNr1Pk67J8RcYJksU7Sh1V1g4WseBdnig'
+
+// describe("Auth API", () => {
+// const cred={
+// 			email:"fukundimana@gmail.com",
+// 			password:'fukundimana'
+// 		}
+// 		// login
+// 		it("should login ",(done)=>{
+// 			chai.request(server).post('/user/login')
+// 			.send(cred)
+// 			.end((error,response)=>{
+// 				response.should.have.status(200)
+// 				response.body.should.have.property('token')
+// 				// token=response.body.token
+// 				done()
+// 			})
+// 		})
+// })
+
 
 describe("Blogs API", () => {
   /**
@@ -56,7 +76,7 @@ describe("Blogs API", () => {
    */
 
   describe("/GET /blogs", () => {
-    const blogId = '5f746d7b945aa3390c7e4628'
+    const blogId = '5f72c4e3e5636a1aa06bf0f7'
     it("it should get a blog by id", (done) => {
       chai
         .request(server)
@@ -141,9 +161,6 @@ describe("Blogs API", () => {
 
 });
 
-
-
-
 describe("Contact API", () => {
   /**
    * Test the GET (all the blogs) route
@@ -190,7 +207,7 @@ describe("Contact API", () => {
 
   describe("/DELETE /questions", () => {
     it("it should delete a blog of that id", (done) => {
-      const questionId = '5f746d7b945aa3390c7e4628'
+      const questionId = '5f72d98f48eb571f9cac602b'
       chai
         .request(server)
         .delete(`/questions/${questionId}`)

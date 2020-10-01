@@ -16,9 +16,7 @@
    },
    () => console.log("connected to DB!")
  );
-
-
-
+ app.listen(2000);
  app.use(morgan("dev"));
  app.use(bodyParser.urlencoded({
    extended: false
@@ -52,5 +50,4 @@
      },
    });
  });
-
  module.exports = app;
