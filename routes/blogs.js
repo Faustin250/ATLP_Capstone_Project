@@ -6,8 +6,8 @@
 
  const router = express.Router();
  router.get('/', blogsController.blogs_get_all);
- router.post('/create', checkAuth, blogsController.blogs_create_blog);
- router.get('/:blogId', checkAuth, blogsController.blogs_get_one);
- router.patch('/:blogId', checkAuth, blogsController.blogs_update_one)
- router.delete('/:blogId', checkAuth, blogsController.blogs_delete_one);
+ router.post('/create',   blogsController.blogs_create_blog);
+ router.get('/:blogId',  blogsController.blogs_get_one);
+ router.patch('/:blogId',   blogsController.blogs_update_one)
+ router.delete('/:blogId',   blogsController.blogs_delete_one);
  module.exports = router;

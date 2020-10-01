@@ -20,7 +20,7 @@ exports.blogs_get_all = (req, res, next) => {
       res.status(200).json(docs);
 
     }).catch(err => {
-      res.status(500).json({
+      res.status(404).json({
         error: err
       });
     });

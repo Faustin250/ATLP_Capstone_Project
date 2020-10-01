@@ -7,7 +7,7 @@
  const router = express.Router();
 
  router.get('/', contactController.contacts_get_all);
- router.post('/create', checkAuth, contactController.contacts_create_one);
- router.delete('/:contactId', checkAuth, contactController.contacts_delete_one);
+ router.post('/create',  contactController.contacts_create_one);
+ router.delete('/:contactId',  contactController.contacts_delete_one);
 
  module.exports = router;

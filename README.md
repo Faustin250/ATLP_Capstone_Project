@@ -1,10 +1,3 @@
-# Blog API
-This is the implementation of all APIs needed to build a blog
+[![Build Status](https://travis-ci.org/Faustin250/MyBrand.svg?branch=master)](https://travis-ci.org/Faustin250/MyBrand)
 
-## Tasks
-- Get All
-- Get one
-- Create one
-- Update one
-- Delete one
-
+[![Coverage Status](https://coveralls.io/repos/github/Faustin250/MyBrand/badge.svg?branch=develop)](https://coveralls.io/github/Faustin250/MyBrand?branch=develop)

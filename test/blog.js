@@ -6,32 +6,14 @@ let chaiHttp = require("chai-http");
 let server = require("../app");
 let should = chai.should();
 chai.use(chaiHttp);
-let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVrdW5kaW1hbmFAZ21haWwuY29tIiwidXNlcklkIjoiNWY3MzBhZDlkMThlYzIxMmZjN2RhNGJmIiwiaWF0IjoxNjAxNTIzMzE5LCJleHAiOjE2MDE1MjY5MTl9.mu1yXwkgGjBNr1Pk67J8RcYJksU7Sh1V1g4WseBdnig'
-
-// describe("Auth API", () => {
-// const cred={
-// 			email:"fukundimana@gmail.com",
-// 			password:'fukundimana'
-// 		}
-// 		// login
-// 		it("should login ",(done)=>{
-// 			chai.request(server).post('/user/login')
-// 			.send(cred)
-// 			.end((error,response)=>{
-// 				response.should.have.status(200)
-// 				response.body.should.have.property('token')
-// 				// token=response.body.token
-// 				done()
-// 			})
-// 		})
-// })
-
+//let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVrdW5kaW1hbmFAZ21haWwuY29tIiwidXNlcklkIjoiNWY3MzBhZDlkMThlYzIxMmZjN2RhNGJmIiwiaWF0IjoxNjAxNTQ2NDMwLCJleHAiOjE2MDE1NTAwMzB9.CoHK1A3XUHVI1uVCTMzT0ii6g7wRrSG-A54FWAC-nRk'
 
 describe("Blogs API", () => {
   /**
    * Test the GET (all the blogs) route
    */
   describe("/GET /blogs", () => {
+
     it("it should GET all the blogs", (done) => {
       chai
         .request(server)
@@ -41,9 +23,10 @@ describe("Blogs API", () => {
           res.body.should.be.a("array");
           //res.body.length.should.be.eql(8);
           done();
-        });
-    });
-  });
+        })
+    })
+
+  })
 
   /*
    * Test the /POST route
@@ -58,9 +41,9 @@ describe("Blogs API", () => {
       chai
         .request(server)
         .post("/blogs/create")
-        .set({
-          "Authorization": `Bearer ${token}`
-        })
+        // .set({
+        //   "Authorization": `Bearer ${token}`
+        // })
         .send(blog)
         .end((err, res) => {
           res.should.have.status(201);
@@ -81,9 +64,9 @@ describe("Blogs API", () => {
       chai
         .request(server)
         .get(`/blogs/${blogId}`)
-        .set({
-          "Authorization": `Bearer ${token}`
-        })
+        // .set({
+        //   "Authorization": `Bearer ${token}`
+        // })
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a("object");
@@ -95,67 +78,21 @@ describe("Blogs API", () => {
         });
     });
   });
-
-  /**
-   * Test the PATCH route
-   */
-  // describe("/PATCH /blogs/create", () => {
-
-  //   const blogId = '5f746d7b945aa3390c7e4628'
-  //   it("it should update an existing blog", (done) => {
-  //     let blog = {
-  //       title: "first blog",
-  //       intro: "NodeJs testing",
-  //       content: "Testing my app using mocha & chai",
-  //     };
-  //     chai
-  //       .request(server)
-  //       .patch(`/blogs/${blogId}`)
-  //       .set({
-  //         "Authorization": `Bearer ${token}`
-  //       })
-  //       .send(blog)
-  //       .end((err, res) => {
-  //         res.should.have.status(200);
-  //         res.body.should.be.a("object");
-  //         res.body.should.have.property("message");
-  //         done();
-  //       });
-  //   });
-
-
-  // });
-
+ 
   describe("/DELETE /blogs", () => {
     it("it should delete a blog of that id", (done) => {
       const blogId = '5f746d7b945aa3390c7e4628'
       chai
         .request(server)
         .delete(`/blogs/${blogId}`)
-        .set({
-          "Authorization": `Bearer ${token}`
-        })
+        // .set({
+        //   "Authorization": `Bearer ${token}`
+        // })
         .end((err, res) => {
           res.should.have.status(200);
           done();
         });
     });
-
-
-    // it("it should delete a blog of that id", (done) => {
-    //   const blogId2 = '5f746d7b945aa3390c7e4629'
-    //   chai
-    //     .request(server)
-    //     .delete(`/blogs/${blogId2}`)
-    //     .set({
-    //       "Authorization": `Bearer ${token}`
-    //     })
-    //     .end((err, res) => {
-    //       res.should.have.status(404);
-    //       res.text.should.be.eq("The task with the provided ID does not exist.");
-    //       done();
-    //     });
-    // });
 
   });
 
@@ -192,9 +129,9 @@ describe("Contact API", () => {
       chai
         .request(server)
         .post("/questions/create")
-        .set({
-          "Authorization": `Bearer ${token}`
-        })
+        // .set({
+        //   "Authorization": `Bearer ${token}`
+        // })
         .send(blog)
         .end((err, res) => {
           res.should.have.status(201);
@@ -211,9 +148,9 @@ describe("Contact API", () => {
       chai
         .request(server)
         .delete(`/questions/${questionId}`)
-        .set({
-          "Authorization": `Bearer ${token}`
-        })
+        // .set({
+        //   "Authorization": `Bearer ${token}`
+        // })
         .end((err, res) => {
           res.should.have.status(200);
           done();
