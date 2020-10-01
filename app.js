@@ -1,3 +1,4 @@
+ var PORT = process.env.PORT || 5000;
  const express = require("express");
  const app = express();
  const mongoose = require("mongoose");
@@ -16,7 +17,7 @@
    },
    () => console.log("connected to DB!")
  );
- app.listen(2000);
+ app.listen(PORT);
  app.use(morgan("dev"));
  app.use(bodyParser.urlencoded({
    extended: false
